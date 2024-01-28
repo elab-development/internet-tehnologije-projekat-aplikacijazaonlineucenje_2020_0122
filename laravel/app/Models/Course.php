@@ -17,5 +17,7 @@ class Course extends Model
     public function purchased(){
         return $this->hasMany(Purchased::class);
     }
-
+    public function Lesson() {
+        return $this->hasMany(Lesson::class);
+    }
 }
