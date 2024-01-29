@@ -5,13 +5,15 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LessonSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        \App\Models\Lesson::factory(10)->create();
+        $role1 = Role::create(['Role_name'=> "administrator"]);
+        $role2 = Role::create(['Role_name'=> "predavac"]);
+        $role3 = Role::create(['Role_name'=> "korisnik"]);
     }
 }
