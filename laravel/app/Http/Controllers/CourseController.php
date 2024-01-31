@@ -7,6 +7,7 @@ use App\Http\Resources\CourseResource;
 use Illuminate\Http\Request;
 use App\Http\Resources\CourseCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
@@ -16,7 +17,6 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::all();
-       
         return new CourseCollection($courses);
     }
 
@@ -33,7 +33,24 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255|min:2',
+            'description' => 'required|string|max:1024',
+            'price' => 'required|numeric|between:0,99.99', 
+        ]);
+    
+       if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+    
+        $course = Course::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price, 
+        ]);  
+    
+        return response()->json(['Course is created successfully', new CourseResource($course)]);
+
     }
 
     /**
@@ -61,7 +78,22 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'title' => 'required|string|max:255|min:2',
+            'description' => 'required|string|max:1024|email',
+            'price' => 'required|numeric|between:0,99.99',
+        ]);
+
+        if($validator->fails())
+            return response()->json($validator->errors());
+
+            
+        $course->title = $request->title;
+        $course->description = $request->description;
+        $course->price = $request->price;
+
+        $course->save();
+        return response()-json(["Course was updated successfully.", new CourseResource($course)]);
     }
 
     /**
@@ -69,6 +101,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course -> delete();
+        return response()->json('Course is deleted successfully');
     }
 }

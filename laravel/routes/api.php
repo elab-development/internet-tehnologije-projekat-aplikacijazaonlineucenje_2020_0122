@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserPurchesedController;
+use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,7 +28,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::get('/roles',[RoleController::class, 'index']);
 Route::get('/roles/{id}',[RoleController::class, 'show']);
 
-Route::resource('courses',CourseController::class);
+//Route::resource('courses',CourseController::class);
 Route::resource('purchaseds',PurchasedController::class);
 Route::resource('users',UserController::class);
 Route::resource('lessons',LessonController::class);
@@ -35,3 +36,19 @@ Route::resource('lessons',LessonController::class);
 //Nested
 //Route::get('/users/{id}/purchaseds',[UserPurchesedController::class,'index'])->name('users.purchaseds.index');
 Route::resource('users.purchaseds',UserPurchesedController::class)->only(['index']);
+
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+    Route::resource('courses', CourseController::class)->only(['update','store','destroy']);
+
+    // API route for logout user
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+Route::resource('courses', CourseController::class)->only('index');
