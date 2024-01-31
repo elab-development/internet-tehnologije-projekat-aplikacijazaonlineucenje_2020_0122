@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\LessonResource;
 use App\Http\Resources\LessonCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+
 class LessonController extends Controller
 {
     /**
@@ -32,7 +34,23 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255|min:2',
+            'course_id' => 'required|exists:courses,id',
+            'content' => 'required|string|max:255'
+        ]);
+    
+       if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+    
+        $lesson = Lesson::create([
+            'course_id' =>$request->course_id,
+            'title' =>$request->title,
+            'content' =>$request->content
+        ]);  
+    
+        return response()->json(['Lesson is created successfully', new LessonResource($lesson)]);
     }
 
     /**
@@ -60,7 +78,26 @@ class LessonController extends Controller
      */
     public function update(Request $request, Lesson $lesson)
     {
-        //
+        if (is_null($lesson)) {
+            return response()->json(['message' => 'Lesson not found.'], Response::HTTP_NOT_FOUND);
+        }
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255|min:2',
+            'course_id' => 'required|exists:courses,id',
+            'content' => 'required|string|max:255'
+        ]);
+    
+       if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+    
+        $lesson->title = $request->title;
+        $lesson->course_id = $request->course_id;
+        $lesson->content = $request->content;
+
+        $lesson->save();
+    
+        return response()->json(['Lesson is updated successfully', new LessonResource($lesson)]);
     }
 
     /**
@@ -68,6 +105,7 @@ class LessonController extends Controller
      */
     public function destroy(Lesson $lesson)
     {
-        //
+        $lesson -> delete();
+        return response()->json('Lesson was deleted successfully');
     }
 }

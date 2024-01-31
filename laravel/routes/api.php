@@ -30,7 +30,7 @@ Route::get('/roles/{id}',[RoleController::class, 'show']);
 
 //Route::resource('courses',CourseController::class);
 Route::resource('purchaseds',PurchasedController::class);
-Route::resource('users',UserController::class);
+
 Route::resource('lessons',LessonController::class);
 
 //Nested
@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::resource('courses', CourseController::class)->only(['update','store','destroy']);
 
+    Route::resource('users',UserController::class);
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
 });

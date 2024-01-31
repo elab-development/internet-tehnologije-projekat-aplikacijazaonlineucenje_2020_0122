@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -60,7 +61,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|string|max:255|min:2',
+            'email' => 'required|string|max:255|email|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if($validator->fails())
+            return response()->json($validator->errors());
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
+        return response()->json(['Lesson is created successfully', new UserResource($user)]);
+
     }
 
     /**
@@ -68,6 +84,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user -> delete();
+        return response()->json(['User was deleted successfully']);
     }
 }

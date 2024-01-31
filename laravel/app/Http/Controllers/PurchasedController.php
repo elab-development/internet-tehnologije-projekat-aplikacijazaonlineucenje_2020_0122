@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\PurchasedResource;
 use App\Http\Resources\PurchasedCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class PurchasedController extends Controller
 {
@@ -32,7 +33,25 @@ class PurchasedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            
+            'course_id' => 'required|exists:courses,id',
+            'user_id' => 'required|exists:users,id',
+            'payment_method' => 'required|in:bank transfer,credit card,pay pal'
+
+        ]);
+    
+       if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $purchased = Purchased::create([
+            'course_id' => $request->course_id,
+            'user_id' =>$request->user_id,
+            'payment_method' => $request->payment_method
+
+        ]);
+        return response()->json(['Lesson was created successfully', new PurchasedResource($purchased)]);
     }
 
     /**
@@ -60,7 +79,25 @@ class PurchasedController extends Controller
      */
     public function update(Request $request, Purchased $purchased)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            
+            'course_id' => 'required|exists:courses,id',
+            'user_id' => 'required|exists:users,id',
+            'payment_method' => 'required|in:bank transfer,credit card,pay pal'
+
+        ]);
+    
+       if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        $purchased->course_id =$request->course_id;
+        $purchased->user_id =$request->user_id;
+        $purchased->payment_method =$request->payment_method;
+
+        $purchased->save();
+
+        return response()->json(['Lesson is updated successfully', new PurchasedResource($purchased)]);
+
     }
 
     /**
@@ -68,6 +105,7 @@ class PurchasedController extends Controller
      */
     public function destroy(Purchased $purchased)
     {
-        //
+        $purchased -> delete();
+        return response()->json(['Purchase was deleted successfully']);
     }
 }

@@ -38,7 +38,7 @@ class CourseController extends Controller
             'description' => 'required|string|max:1024',
             'price' => 'required|numeric|between:0,99.99', 
         ]);
-    
+       
        if ($validator->fails()) {
             return response()->json($validator->errors());
         }
@@ -77,15 +77,16 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Course $course)
-    {
-        $validator = Validator::make($request->all(),[
+    { 
+        $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255|min:2',
-            'description' => 'required|string|max:1024|email',
-            'price' => 'required|numeric|between:0,99.99',
+            'description' => 'required|string|max:1024',
+            'price' => 'required|numeric|between:0,99.99', 
         ]);
-
-        if($validator->fails())
+        
+       if ($validator->fails()) {
             return response()->json($validator->errors());
+        }
 
             
         $course->title = $request->title;
@@ -93,7 +94,7 @@ class CourseController extends Controller
         $course->price = $request->price;
 
         $course->save();
-        return response()-json(["Course was updated successfully.", new CourseResource($course)]);
+        return response()->json(["Course was updated successfully.", new CourseResource($course)]);
     }
 
     /**
@@ -102,6 +103,6 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         $course -> delete();
-        return response()->json('Course is deleted successfully');
+        return response()->json('Course was deleted successfully');
     }
 }
