@@ -20,6 +20,13 @@ class UserController extends Controller
         return new UserCollection($users);
     }
 
+    public function indexPagination()
+    {
+        $users = User::all();
+        $users = User::paginate(5);
+        return new UserCollection($users);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
