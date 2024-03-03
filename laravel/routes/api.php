@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserPurchesedController;
 use App\Http\Controllers\API\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('courses', CourseController::class)->only(['update','store','destroy']);
 
     Route::resource('users',UserController::class);
+    Route::get('/userspg', [UserController::class, 'indexPagination']); //paginacija
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
 });
