@@ -1,5 +1,5 @@
 <?php
-
+// ovo je pravi prvi domaci
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
