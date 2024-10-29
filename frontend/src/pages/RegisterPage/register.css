@@ -1,0 +1,9 @@
+.register__container {
+    width: 400; 
+    height: 300; 
+    background-color: #f0f0f0; 
+    position: absolute; 
+    top: 55%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+  }
