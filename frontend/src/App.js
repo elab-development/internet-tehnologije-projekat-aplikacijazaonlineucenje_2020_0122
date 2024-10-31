@@ -85,9 +85,10 @@ function App() {
     <BrowserRouter>
       <Navbar cartNum={cartNum} />
       <Routes>
-        <Route path="/pocetna" element={<HomePage/>} />
+      <Route path="/" element={<HomePage/>} />
+        <Route path="/home" element={<HomePage/>} />
         <Route
-          path="/kursevi"
+          path="/courses"
           element={<Course products={courses} onAdd={addToCart} onRemove={remFromCart} />}
         />
         <Route path="/login" element={<Login />} />
