@@ -11,6 +11,7 @@ import picture1 from "../src/assets/20944356.jpg";
 import picture2 from "../src/assets/GIU AMA 198-06.jpg";
 import picture3 from "../src/assets/download.jpg";
 import HomePage from "./pages/HomePage/HomePage.jsx";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.jsx";
 
 const courses = [
   {
@@ -18,36 +19,40 @@ const courses = [
     title: "Kurs 1",
     description: "Opis kursa 1",
     amount: 0,
-    picture: picture1
+    picture: picture1,
+    price: 100
   },
   {
     id: 2,
     title: "Kurs 2",
     description: "Opis kursa 2",
     amount: 0,
-    picture: picture2
+    picture: picture2,
+    price: 200
   },
   {
     id: 3,
     title: "Kurs 3",
     description: "Opis kursa 3",
     amount: 0,
-    picture: picture3
+    picture: picture3,
+    price: 250
   },
 ];
 
 function App() {
   const [cartNum, setCartNum] = useState(0);
-
+  const [cartCourses, setCartCourses] = useState([]);
   const addToCart = (id) => {
-    courses.map((course) => {
+    const updatedCourses = courses.map((course) => {
       if (course.id === id) {
         course.amount = course.amount + 1;
-        setCartNum(cartNum + 1); 
-        console.log("product id=", course.id, "amount=", course.amount);
       }
       return course;
     });
+  
+    setCartCourses(updatedCourses.filter((course) => course.amount > 0));
+    setCartNum(cartNum + 1);
   };
 
   const remFromCart = (id) => {
@@ -56,6 +61,7 @@ function App() {
         if (course.amount > 0) {
           course.amount = course.amount - 1;
           setCartNum(cartNum - 1);
+          refreshCart();
           console.log("product id=", course.id, "amount=", course.amount);
         } else {
           alert("Amount of product is already 0.");
@@ -64,6 +70,16 @@ function App() {
       return course;
     });
   };
+
+  const refreshCart = () => {
+    const newCourses = cartCourses.filter((course) => course.amount > 0);
+    setCartCourses(newCourses);
+  };
+
+  function calculateTotal() {
+    return cartCourses.reduce((total, course) => total + course.price * course.amount, 0);
+  }
+
 
   return (
     <BrowserRouter>
@@ -76,7 +92,8 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart cartCourses={cartCourses} calculateTotal={calculateTotal} />} />
+        <Route path="/checkout" element={<CheckoutPage  />} />
       </Routes>
       <Footer />
     </BrowserRouter>
