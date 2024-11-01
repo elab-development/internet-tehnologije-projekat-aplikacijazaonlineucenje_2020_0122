@@ -5,7 +5,7 @@ import { FaInfoCircle, FaPhone, FaLock, FaFileAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="container footer">
+    <footer className="container footer" >
       <div className="row">
         <ul className="row">
           <li className="col-sm"><Link to="/o-nama"><FaInfoCircle /> O nama</Link></li>

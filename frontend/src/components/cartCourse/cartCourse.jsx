@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-const Coursecard = ({ course }) => {
+const cartCourse = ({ course }) => {
   return (
     <div className="card small">
       <div className='section'>
@@ -22,4 +22,4 @@ const Coursecard = ({ course }) => {
   );
 }
 
-export default Coursecard;
+export default cartCourse;

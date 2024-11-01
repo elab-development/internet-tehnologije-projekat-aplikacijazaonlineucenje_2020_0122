@@ -1,7 +1,7 @@
 import React from 'react';
 import "./register.css";
 
-const RegisterForm = () => {
+const RegisterPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -13,7 +13,9 @@ const RegisterForm = () => {
     const email = formData.get('email');
     const role = formData.get('role');
 
-   
+    const username = formData.get('username');
+
+    console.log('Username: ',username);
     console.log('First Name:', firstName);
     console.log('Last Name:', lastName);
     console.log('Password:', password);
@@ -24,7 +26,7 @@ const RegisterForm = () => {
   return (
   <div className='register__container'>
     <div className='container'>
-      <h2 className='col-sm-offset-4'>Register</h2>
+      <h2 className='col-sm-offset-2'>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className='col-sm-offset-2' >
           <label htmlFor="firstName">First Name:</label>
@@ -33,6 +35,10 @@ const RegisterForm = () => {
         <div className='col-sm-offset-2'>
           <label htmlFor="lastName">Last Name:</label>
           <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div className='col-sm-offset-2' >
+          <label htmlFor="username">Username:</label>
+          <input type="text" id="username" name="username" required />
         </div>
         <div className='col-sm-offset-2'>
           <label htmlFor="password">Password:</label>
@@ -60,4 +66,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default RegisterPage;

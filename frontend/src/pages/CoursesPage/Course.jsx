@@ -12,8 +12,8 @@ const Course = ({ products, onAdd, onRemove }) => {
 
   return (
     <div className="container">
-      {/* Pretraga u gornjem desnom uglu */}
-      <div className="row" style={{ justifyContent: 'flex-end', marginBottom: '20px' }}>
+      
+      <div className="row" style={{ justifyContent: 'flex-end'}}>
         <input
           type="text"
           placeholder="Search courses"
@@ -23,7 +23,6 @@ const Course = ({ products, onAdd, onRemove }) => {
         />
       </div>
 
-      {/* Prikaz filtriranih kurseva */}
       <div className="row">
         {filteredCourses.map((product) => (
           <Coursecard

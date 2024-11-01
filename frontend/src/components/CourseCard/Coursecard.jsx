@@ -15,6 +15,9 @@ const Coursecard = ({ course, onAdd, onRemove }) => {
       <div className='section'>
         <p>{course.description}</p>   
       </div>
+      <div className='section'>
+        <p>{course.price + '$'}</p>   
+      </div>
       <div className='section row'>
         <p>Dodaj u korpu</p>
         <div className="button-group">

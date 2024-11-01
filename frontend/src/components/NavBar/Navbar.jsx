@@ -17,8 +17,6 @@ const Navbar = ({cartNum}) => {
             <p className='col-sm-offset-3'><Link to ="login">Login</Link></p>
             <p className='col-sm-offset-1'><Link to ="register">Registruj se</Link></p>
             <p className='col-sm-offset-1'><Link to = "cart"><FaCartShopping />{cartNum}</Link></p>
-            
-               
         </ul>
     </nav>
     

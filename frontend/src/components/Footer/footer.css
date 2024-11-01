@@ -1,0 +1,7 @@
+.container footer{
+    margin: 0;
+    padding: 20px 0;
+    background-color: #f1f1f1;
+    text-align: center;
+    z-index: 4;
+}
