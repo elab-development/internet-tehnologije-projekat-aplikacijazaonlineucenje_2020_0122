@@ -1,60 +1,59 @@
 import React from 'react';
 import "./register.css";
+import axios from 'axios';
+import { useState } from 'react';
 
 const RegisterPage = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    name: "",
+    role_id: ""
+  }); 
 
-   
-    const firstName = formData.get('firstName');
-    const lastName = formData.get('lastName');
-    const password = formData.get('password');
-    const email = formData.get('email');
-    const role = formData.get('role');
+  function handleInput(e){
+  
+    let newUserData = userData;
+    newUserData[e.target.name] = e.target.value;
+    setUserData(newUserData);
+    console.log(newUserData); 
+  };
 
-    const username = formData.get('username');
-
-    console.log('Username: ',username);
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Password:', password);
-    console.log('Email:', email);
-    console.log('Role:', role);
+  const handleRegister = (e) => {
+    e.preventDefault();
+  axios.post('http://127.0.0.1:8000/api/register', userData).then((res) => {
+      console.log(res.data);
+  }).catch(e =>{
+    console.log(e);
+  });
   };
 
   return (
   <div className='register__container'>
     <div className='container'>
       <h2 className='col-sm-offset-2'>Register</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegister}>
         <div className='col-sm-offset-2' >
-          <label htmlFor="firstName">First Name:</label>
-          <input type="text" id="firstName" name="firstName" required />
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" name="name" onInput={handleInput} required  />
         </div>
-        <div className='col-sm-offset-2'>
-          <label htmlFor="lastName">Last Name:</label>
-          <input type="text" id="lastName" name="lastName" required />
-        </div>
-        <div className='col-sm-offset-2' >
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" name="username" required />
-        </div>
+        
+        
         <div className='col-sm-offset-2'>
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <input type="password" id="password" name="password" onInput={handleInput}  required />
         </div>
         <div className='col-sm-offset-2'>
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" onInput={handleInput} required />
         </div>
         <div className='col-sm-offset-2'>
           <label htmlFor="role">Role:</label>
-          <select id="role" name="role" required>
+          <select id="role_id" name="role_id" onInput={handleInput} required>
             <option value="">Select Role</option>
-            <option value="Administrator">Administrator</option>
-            <option value="Predavač">Predavač</option>
-            <option value="Korisnik">Korisnik</option>
+            <option value="1">Administrator</option>
+            <option value="2">Predavač</option>
+            <option value="3">Korisnik</option>
           </select>
         </div>
         <div className='col-sm-offset-3'>
