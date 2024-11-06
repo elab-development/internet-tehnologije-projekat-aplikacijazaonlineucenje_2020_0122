@@ -7,7 +7,7 @@ import ProfileMenu from '../ProfileMenu/profileMenu';
 
 
 const Navbar = ({cartNum, token, loggedUser}) => {
-  console.log(loggedUser)
+  
   function handleLogout(){
     
    

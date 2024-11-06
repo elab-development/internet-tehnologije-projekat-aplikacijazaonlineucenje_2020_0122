@@ -2,9 +2,10 @@ import Navbar from "./components/NavBar/Navbar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserProfile from "./pages/UserProfilePage/UserProfile.jsx";
+import axios from "axios";
 
 import Cart from "./pages/Cart/Cart.jsx";
 import Course from "./pages/CoursesPage/Course.jsx";
@@ -17,34 +18,24 @@ import UserCourses from "./pages/UserCoursePage/UserCourses.jsx";
 
 
 
-const courses = [
-  {
-    id: 1,
-    title: "Kurs 1",
-    description: "Opis kursa 1",
-    amount: 0,
-    picture: picture1,
-    price: 100
-  },
-  {
-    id: 2,
-    title: "Kurs 2",
-    description: "Opis kursa 2",
-    amount: 0,
-    picture: picture2,
-    price: 200
-  },
-  {
-    id: 3,
-    title: "Kurs 3",
-    description: "Opis kursa 3",
-    amount: 0,
-    picture: picture3,
-    price: 250
-  },
-];
+
 
 function App() {
+
+  const[courses, setCourses] = useState();
+
+  useEffect(()=>{
+    if(courses == null){
+      axios.get("api/courses").then((res)=>{
+        const coursesWithAmount = res.data.course.map(course => ({
+          ...course,
+          amount: 0, 
+        }));
+        setCourses(coursesWithAmount);
+        
+  });
+    }
+  },[courses])
 
   const [cartNum, setCartNum] = useState(0);
   const [cartCourses, setCartCourses] = useState([]);
@@ -105,7 +96,7 @@ function App() {
         <Route path="/home" element={<HomePage/>} />
         <Route
           path="/courses"
-          element={<Course products={courses} onAdd={addToCart} onRemove={remFromCart} />}
+          element={<Course courses={courses} onAdd={addToCart} onRemove={remFromCart} />}
         />
         <Route path="/login" element={<Login addToken={addToken} addUser = {addUser} />} />
         <Route path="/register" element={<Register />} />

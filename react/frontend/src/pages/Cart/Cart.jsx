@@ -1,12 +1,12 @@
 import React from 'react';
 import CartCourse from '../../components/cartCourse/cartCourse.jsx';
-import "./cart.css";
+import "../../index.css";
 import { Link } from 'react-router-dom';
 
 
 const Cart = ({ cartCourses, calculateTotal }) => {
   return (
-    <div className="container cart-container">
+    <div className="content-wrap page-conatainer">
       <h1>Your Cart</h1>
       
       {cartCourses.length > 0 ? (

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import "../../index.css";
+//import "../Footer/footer.css";
 import { FaInfoCircle, FaPhone, FaLock, FaFileAlt } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="container footer" >
+    <footer className="footer" >
       <div className="row">
         <ul className="row">
           <li className="col-sm"><Link to="/o-nama"><FaInfoCircle /> O nama</Link></li>

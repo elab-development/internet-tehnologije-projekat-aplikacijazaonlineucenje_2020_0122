@@ -31,8 +31,8 @@ const RegisterPage = () => {
   };
 
   return (
-  <div className='register__container'>
-    <div className='container'>
+  <div className='page-container'>
+    <div className='container content-wrap'>
       <h2 className='col-sm-offset-2'>Register</h2>
       <form onSubmit={handleRegister}>
         <div className='col-sm-offset-2' >

@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Coursecard from '../../components/CourseCard/Coursecard';
+//import "../CoursesPage/course.css";
 
 
-const Course = ({ products, onAdd, onRemove }) => {
+const Course = ({ courses, onAdd, onRemove }) => {
   const [searchTerm, setSearchTerm] = useState("");
+ 
 
   
-  const filteredCourses = products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
+  
+  const filteredCourses = courses
+    ? courses.filter((course) =>
+        course.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
   return (
-    <div className="container">
-      
+    <div className="container page-container">
+       <div className="content-wrap">
       <div className="row" style={{ justifyContent: 'flex-end'}}>
         <input
           type="text"
@@ -24,15 +29,23 @@ const Course = ({ products, onAdd, onRemove }) => {
       </div>
 
       <div className="row">
-        {filteredCourses.map((product) => (
-          <Coursecard
-            key={product.id}
-            course={product}
-            onAdd={onAdd}
-            onRemove={onRemove}
-          />
-        ))}
+        
+      {courses == null ? <></> : (
+    filteredCourses.map((course) => (
+      <Coursecard
+        key={course.id}
+        course={course}
+        onAdd={onAdd}
+        onRemove={onRemove}
+      />
+    ))
+  )}
+
+
+
+
       </div>
+    </div>
     </div>
   );
 };
