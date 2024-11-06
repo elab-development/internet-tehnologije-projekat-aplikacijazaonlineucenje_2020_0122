@@ -5,6 +5,7 @@ import Register from "./pages/RegisterPage/Register.jsx";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 import Cart from "./pages/Cart/Cart.jsx";
 import Course from "./pages/CoursesPage/Course.jsx";
 import picture1 from "../src/assets/20944356.jpg";
@@ -12,6 +13,8 @@ import picture2 from "../src/assets/GIU AMA 198-06.jpg";
 import picture3 from "../src/assets/download.jpg";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.jsx";
+
+
 
 const courses = [
   {
@@ -41,8 +44,10 @@ const courses = [
 ];
 
 function App() {
+
   const [cartNum, setCartNum] = useState(0);
   const [cartCourses, setCartCourses] = useState([]);
+  const [token, setToken] = useState();
   const addToCart = (id) => {
     const updatedCourses = courses.map((course) => {
       if (course.id === id) {
@@ -80,10 +85,14 @@ function App() {
     return cartCourses.reduce((total, course) => total + course.price * course.amount, 0);
   }
 
+  function addToken(auth_token){
+    setToken(auth_token);
+  }
+
 
   return (
     <BrowserRouter>
-      <Navbar cartNum={cartNum} />
+      <Navbar cartNum={cartNum} token = {token} />
       <Routes>
       <Route path="/" element={<HomePage/>} />
         <Route path="/home" element={<HomePage/>} />
@@ -91,10 +100,11 @@ function App() {
           path="/courses"
           element={<Course products={courses} onAdd={addToCart} onRemove={remFromCart} />}
         />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login addToken={addToken} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart cartCourses={cartCourses} calculateTotal={calculateTotal} />} />
         <Route path="/checkout" element={<CheckoutPage  />} />
+        <Route path="/adminLogin" element={<Login  />} /> //todo
       </Routes>
       <Footer />
     </BrowserRouter>
