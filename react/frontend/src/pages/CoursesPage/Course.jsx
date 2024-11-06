@@ -5,7 +5,7 @@ import Coursecard from '../../components/CourseCard/Coursecard';
 const Course = ({ products, onAdd, onRemove }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Funkcija za filtriranje kurseva po imenu
+  
   const filteredCourses = products.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );

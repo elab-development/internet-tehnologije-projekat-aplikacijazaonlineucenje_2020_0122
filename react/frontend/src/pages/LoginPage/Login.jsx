@@ -3,7 +3,7 @@ import './login.css'
 import {useState} from 'react'
 import axios from 'axios'
 
-const Login = ({addToken}) => {
+const Login = ({addToken, addUser}) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -19,10 +19,11 @@ function handleInput(e){
 function handleLogin(e){
   e.preventDefault();
   axios.post('api/login', userData).then((res) => {
-      console.log(res.data);
+      
       if(res.data.success === true){
         window.sessionStorage.setItem("auth_token", res.data.access_token)
         addToken(res.data.access_token);
+        addUser(res.data.user);
         
       }
   }).catch(e =>{
@@ -36,7 +37,7 @@ function handleLogin(e){
       <form className='row' onSubmit={handleLogin}>
         <div className='row col-sm-offset-4'>
           
-          <label label className='col-sm-offset-4' htmlFor="email" >Email:</label> 
+          <label label className='col-sm-offset-4' htmlFor="email"  >Email:</label> 
           <input type="text" id="email" name="email" onInput={handleInput} />
         </div>
         <div className='col-sm-offset-4' >

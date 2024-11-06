@@ -51,7 +51,7 @@ class PurchasedController extends Controller
             'payment_method' => $request->payment_method
 
         ]);
-        return response()->json(['Lesson was created successfully', new PurchasedResource($purchased)]);
+        return response()->json(['Course was created successfully', new PurchasedResource($purchased)]);
     }
 
     /**

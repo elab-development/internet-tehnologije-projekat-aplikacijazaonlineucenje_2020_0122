@@ -6,11 +6,13 @@
   
   .action .profile {
     position: relative;
-    width: 60px;
-    height: 60px;
-   
-    overflow: hidden;
-    cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  right: 20px;
   }
   
   .action .profile img {
@@ -21,6 +23,10 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+  }
+
+  .action .profile p {
+   color: #0056b3;
   }
   
   .action .menu {
@@ -98,6 +104,6 @@
   }
   
   .action .menu ul li:hover a {
-    color: #ff5d94;
+    color: #0056b3;
   }
   

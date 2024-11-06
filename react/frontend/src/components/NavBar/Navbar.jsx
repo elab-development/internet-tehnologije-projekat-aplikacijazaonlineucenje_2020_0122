@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import "../../index.css";
 import { FaCartShopping } from "react-icons/fa6";
-import "./navbar.css";
 import axios from 'axios';
 import ProfileMenu from '../ProfileMenu/profileMenu';
 
 
-const Navbar = ({cartNum, token}) => {
+const Navbar = ({cartNum, token, loggedUser}) => {
+  console.log(loggedUser)
   function handleLogout(){
-   
+    
    
     let config = {
       method: 'post',
@@ -43,13 +43,17 @@ const Navbar = ({cartNum, token}) => {
             <p className='col-sm-offset-1'><Link to ="courses">Kursevi</Link></p>
 
             {token == null ? (<p className='col-sm-offset-2'><Link to ="login">Login</Link></p>)
-            :(<p className='col-sm-offset-2'><Link to ="login" onClick={handleLogout}>Logout</Link></p>)}
+            :(<p className='col-sm-offset-2'><Link to ="/" onClick={handleLogout}>Logout</Link></p>)}
 
 
 
             <p className='col-sm-offset-1'><Link to ="register">Registruj se</Link></p>
             <p className='col-sm-offset-1'><Link to = "cart"><FaCartShopping />{cartNum}</Link></p>
-            <p className='col-sm-offset-1'><ProfileMenu /></p>
+
+
+            {token == null ? <p></p>
+            :( <p className='col-sm-offset-1'><ProfileMenu loggedUser = {loggedUser} /></p>)}
+
         </ul>
     </nav>
     
