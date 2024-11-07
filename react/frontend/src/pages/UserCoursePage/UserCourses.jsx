@@ -1,19 +1,31 @@
+
 import axios from 'axios'
-import React from 'react'
+import {React, useState,useEffect} from 'react'
+import CartCourse from '../../components/cartCourse/cartCourse.jsx';
+
 
 const UserCourses = ({loggedUser}) => {
     
-    
+    const[courses, setCourses] = useState();
 
-    axios.get('/api/users/'+ loggedUser.id +'/purchaseds').then((res) => {
+    useEffect(()=>{
+        if(courses == null){
+            axios.get('/api/users/'+ loggedUser.id +'/purchaseds').then((res) => {
     
-        console.log(res.data);
-        
-    });
+                console.log(res.data);
+                setCourses(res.data.data);
+            });
+        }
+      },[courses])
 
+    
   return (
     <div className='row'> 
-      ovo je user courses
+     {courses == null ? <></> : (
+     courses.map((item) => (
+        <CartCourse key={item.id} course={item.course} />
+    ))
+  )}
     </div>
   )
 }

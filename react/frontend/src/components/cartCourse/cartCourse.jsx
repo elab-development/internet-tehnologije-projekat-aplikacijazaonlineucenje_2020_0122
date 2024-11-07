@@ -2,7 +2,9 @@ import React from 'react';
 
 
 
-const cartCourse = ({ course }) => {
+const CartCourse = ({ course }) => {
+ // console.log("usao ovde");
+  //console.log(course);
   return (
     <div className="card small">
       <div className='section'>
@@ -22,4 +24,4 @@ const cartCourse = ({ course }) => {
   );
 }
 
-export default cartCourse;
+export default CartCourse;
