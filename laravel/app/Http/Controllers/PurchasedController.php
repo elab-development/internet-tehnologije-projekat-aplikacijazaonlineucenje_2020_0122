@@ -8,6 +8,7 @@ use App\Http\Resources\PurchasedResource;
 use App\Http\Resources\PurchasedCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Course; 
 
 class PurchasedController extends Controller
 {
@@ -51,7 +52,10 @@ class PurchasedController extends Controller
             'payment_method' => $request->payment_method
 
         ]);
-        return response()->json(['Purchase was created successfully', new PurchasedResource($purchased)]);
+
+        $course = Course::find($request->course_id);
+
+        return response()->json($course, 201);
     }
 
     /**

@@ -6,7 +6,7 @@ import axios from 'axios';
 import ProfileMenu from '../ProfileMenu/profileMenu';
 
 
-const Navbar = ({cartNum, token, loggedUser}) => {
+const Navbar = ({cartNum, token, loggedUser, loggedUserCourses}) => {
   
   function handleLogout(){
     
@@ -52,7 +52,7 @@ const Navbar = ({cartNum, token, loggedUser}) => {
 
 
             {token == null ? <p></p>
-            :( <p className='col-sm-offset-1'><ProfileMenu loggedUser = {loggedUser} /></p>)}
+            :( <p className='col-sm-offset-1'><ProfileMenu loggedUser = {loggedUser} courses={loggedUserCourses} /></p>)}
 
         </ul>
     </nav>

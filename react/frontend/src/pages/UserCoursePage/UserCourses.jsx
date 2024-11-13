@@ -1,22 +1,12 @@
 
 import axios from 'axios'
-import {React, useState,useEffect} from 'react'
+import {React} from 'react'
 import CartCourse from '../../components/cartCourse/cartCourse.jsx';
 
 
-const UserCourses = ({loggedUser}) => {
+const UserCourses = ({courses}) => {
     
-    const[courses, setCourses] = useState();
-
-    useEffect(()=>{
-        if(courses == null){
-            axios.get('/api/users/'+ loggedUser.id +'/purchaseds').then((res) => {
     
-                
-                setCourses(res.data.data);
-            });
-        }
-      },[courses])
 
     
   return (

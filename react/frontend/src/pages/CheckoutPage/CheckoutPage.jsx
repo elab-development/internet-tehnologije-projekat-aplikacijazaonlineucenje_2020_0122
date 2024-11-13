@@ -3,25 +3,35 @@
     import { useLocation } from "react-router-dom";
     import axios from "axios";
 
-    const CheckoutPage = ({cartCourses, loggedUser}) => {
-        
+    const CheckoutPage = ({cartCourses, loggedUser, userCourses,updateUserCourses}) => {
+         console.log('User courses:', userCourses);
+        console.log('cart courses:', cartCourses);
         const location = useLocation();
     const { total } = location.state || {};
     const clientId = "AXGedky7tPB3jDTjJtikmCviDA2wzXWC1lAjwOELO-oKBgsFD5hChc7tdFUnSGAuhFFtP6xVzcDtTSnL";
     
     function handlePurchase(){
+       
+        const userCourseIds = userCourses.map(userCourse => userCourse.course.id);
+        const cartCourseIds = cartCourses.map(cartCourse => cartCourse.id);
+        
+        
+        const hasOverlap = cartCourseIds.some(courseId => userCourseIds.includes(courseId));
+        
+        if (hasOverlap) {
+            alert("Već posedujete jedan ili više kurseva iz korpe. Kupovina nije moguća.");
+            return;
+        }
+
         cartCourses.map((course) => {
-           
-            
             axios.post("/api/purchaseds",{
                 user_id: loggedUser.id,
                 course_id: course.id,
                 payment_method: 'bank transfer',
-              });
-
-
-        });
-       
+              }).then((response) => {
+                updateUserCourses();
+            });
+        }); 
     }
 
     return (

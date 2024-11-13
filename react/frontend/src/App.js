@@ -35,12 +35,36 @@ function App() {
         
   });
     }
-  },[courses])
+  },[courses]);
+
+
+  
+
+
 
   const [cartNum, setCartNum] = useState(0);
   const [cartCourses, setCartCourses] = useState([]);
   const [token, setToken] = useState(); 
   const [user, setUser] = useState();
+
+  const[loggedUserCourses, setLoggedUserCourses] = useState();
+
+  useEffect(()=>{
+      if( user != null){
+          axios.get('/api/users/'+ user.id +'/purchaseds').then((res) => {
+              setLoggedUserCourses(res.data.data);
+          });
+      }
+    },[user]);
+
+    function updateCourses() {
+      if (user != null) {
+          axios.get('/api/users/' + user.id + '/purchaseds').then((res) => {
+              setLoggedUserCourses(res.data.data);
+          });
+      }
+  }
+
 
   const addToCart = (id) => {
     const isInCart = cartCourses.some((course) => course.id === id);
@@ -77,6 +101,11 @@ function App() {
     });
   };
 
+  function addCourseToUserCourses(newCourse) {
+    console.log('Adding course:', newCourse);
+    setLoggedUserCourses((prevCourses) => [...prevCourses, newCourse]);
+}
+
   const refreshCart = () => {
     const newCourses = cartCourses.filter((course) => course.amount > 0);
     setCartCourses(newCourses);
@@ -108,10 +137,10 @@ function App() {
         <Route path="/login" element={<Login addToken={addToken} addUser = {addUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart cartCourses={cartCourses} calculateTotal={calculateTotal} />} />
-        <Route path="/checkout" element={<CheckoutPage cartCourses={cartCourses} loggedUser={user} />} />
+        <Route path="/checkout" element={<CheckoutPage cartCourses={cartCourses} loggedUser={user} userCourses = {loggedUserCourses} updateUserCourses={updateCourses} />} />
         <Route path="/admin/Login" element={<Login  />} /> //todo
-        <Route path="/user/profile" element={<UserProfile loggedUser={user} />} />
-        <Route path="/user/courses" element={<UserCourses loggedUser={user} />} />
+        <Route path="/user/profile" element={<UserProfile loggedUser={user}   />} />
+        <Route path="/user/courses" element={<UserCourses loggedUser={user} courses={loggedUserCourses} />} />
 
       </Routes>
       <Footer />
