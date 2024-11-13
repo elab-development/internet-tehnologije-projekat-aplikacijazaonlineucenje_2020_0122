@@ -82,7 +82,7 @@ class UserController extends Controller
         $user->password = $request->password;
 
         $user->save();
-        return response()->json(['Lesson is created successfully', new UserResource($user)]);
+        return response()->json(['User was created successfully', new UserResource($user)]);
 
     }
 

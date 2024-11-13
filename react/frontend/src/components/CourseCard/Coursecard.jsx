@@ -19,10 +19,11 @@ const Coursecard = ({ course, onAdd, onRemove }) => {
         <p>{course.price + '$'}</p>   
       </div>
       <div className='section row'>
-        <p>Dodaj u korpu</p>
+        
         <div className="button-group">
-          <button className="small" onClick={() => onAdd(course.id)}><FaPlus /></button>
-          <button className="small" onClick={() => onRemove(course.id)}><FaMinus /></button> 
+
+          <button className="primary small" onClick={() => onAdd(course.id)}>Dodaj u korpu</button>
+          <button className="secondary small" onClick={() => onRemove(course.id)}>Izbaci iz korpe</button> 
         </div>
       </div>
     </div>

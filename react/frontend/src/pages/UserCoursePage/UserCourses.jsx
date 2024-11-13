@@ -12,7 +12,7 @@ const UserCourses = ({loggedUser}) => {
         if(courses == null){
             axios.get('/api/users/'+ loggedUser.id +'/purchaseds').then((res) => {
     
-                console.log(res.data);
+                
                 setCourses(res.data.data);
             });
         }

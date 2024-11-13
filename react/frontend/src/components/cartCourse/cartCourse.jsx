@@ -18,7 +18,10 @@ const CartCourse = ({ course }) => {
       </div>
       <div className='section row'>
       <h3>Amount: {course.amount}</h3>
-    
+
+      </div>
+      <div className='section row'>
+      <h3>Price: {course.price + "$"}</h3>
       </div>
     </div>
   );

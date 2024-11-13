@@ -43,9 +43,16 @@ function App() {
   const [user, setUser] = useState();
 
   const addToCart = (id) => {
+    const isInCart = cartCourses.some((course) => course.id === id);
+
+    if (isInCart) {
+      alert("Ne mozete kupiti 2 puta isti kurs");
+      return;
+    }
+
     const updatedCourses = courses.map((course) => {
       if (course.id === id) {
-        course.amount = course.amount + 1;
+        course.amount = 1;
       }
       return course;
     });
@@ -58,7 +65,7 @@ function App() {
     courses.map((course) => {
       if (course.id === id) {
         if (course.amount > 0) {
-          course.amount = course.amount - 1;
+          course.amount = 0;
           setCartNum(cartNum - 1);
           refreshCart();
           console.log("product id=", course.id, "amount=", course.amount);
@@ -101,8 +108,8 @@ function App() {
         <Route path="/login" element={<Login addToken={addToken} addUser = {addUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart cartCourses={cartCourses} calculateTotal={calculateTotal} />} />
-        <Route path="/checkout" element={<CheckoutPage  />} />
-        <Route path="/adminLogin" element={<Login  />} /> //todo
+        <Route path="/checkout" element={<CheckoutPage cartCourses={cartCourses} loggedUser={user} />} />
+        <Route path="/admin/Login" element={<Login  />} /> //todo
         <Route path="/user/profile" element={<UserProfile loggedUser={user} />} />
         <Route path="/user/courses" element={<UserCourses loggedUser={user} />} />
 
