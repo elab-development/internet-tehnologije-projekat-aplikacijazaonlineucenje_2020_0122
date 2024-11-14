@@ -2,8 +2,10 @@ import React from 'react'
 import './login.css'
 import {useState} from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Login = ({addToken, addUser}) => {
+  let navigation = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -19,17 +21,25 @@ function handleInput(e){
 function handleLogin(e){
   e.preventDefault();
   axios.post('api/login', userData).then((res) => {
-    
+
       if(res.data.success === true){
+        if(res.data.user.role_id === 1){
+          alert("Korisnik je admin");
+          return;
+        }
         window.sessionStorage.setItem("auth_token", res.data.access_token)
         addToken(res.data.access_token);
         addUser(res.data.user); 
-      }else{
-        alert("Neuspesna prijava");
+        navigation('/');
       }
+      
+
+      
+      
+
   }).catch(e =>{
     console.log(e);
-    //alert("Neuspesna prijava");
+   
   });
 }
 

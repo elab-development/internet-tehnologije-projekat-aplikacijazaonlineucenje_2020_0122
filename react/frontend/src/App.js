@@ -9,12 +9,11 @@ import axios from "axios";
 
 import Cart from "./pages/Cart/Cart.jsx";
 import Course from "./pages/CoursesPage/Course.jsx";
-import picture1 from "../src/assets/20944356.jpg";
-import picture2 from "../src/assets/GIU AMA 198-06.jpg";
-import picture3 from "../src/assets/download.jpg";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.jsx";
 import UserCourses from "./pages/UserCoursePage/UserCourses.jsx";
+import AdminLogin from "./pages/AdminLogin/AdminLogin.jsx";
+import Users from "./pages/Users/Users.jsx";
 
 
 
@@ -138,8 +137,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart cartCourses={cartCourses} calculateTotal={calculateTotal} />} />
         <Route path="/checkout" element={<CheckoutPage cartCourses={cartCourses} loggedUser={user} userCourses = {loggedUserCourses} updateUserCourses={updateCourses} />} />
-        <Route path="/admin/Login" element={<Login  />} /> //todo
-        <Route path="/user/profile" element={<UserProfile loggedUser={user}   />} />
+        <Route path="/admin/login" element={<AdminLogin addToken={addToken} addUser={addUser} />} />
+        <Route path="/admin/users" element={<Users  />}/>
+        
+        <Route path="admin/users/user_details" element={<Users  />}/>
+        <Route path="/user/profile" element={<UserProfile loggedUser={user}/>} />
         <Route path="/user/courses" element={<UserCourses loggedUser={user} courses={loggedUserCourses} />} />
 
       </Routes>

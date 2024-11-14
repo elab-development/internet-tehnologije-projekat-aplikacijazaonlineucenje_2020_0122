@@ -100,7 +100,7 @@ class PurchasedController extends Controller
 
         $purchased->save();
 
-        return response()->json(['Lesson is updated successfully', new PurchasedResource($purchased)]);
+        return response()->json(['Purchase is updated successfully', new PurchasedResource($purchased)]);
 
     }
 
