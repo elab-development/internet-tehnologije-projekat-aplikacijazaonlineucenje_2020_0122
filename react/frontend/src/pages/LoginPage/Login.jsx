@@ -23,11 +23,19 @@ function handleLogin(e){
   axios.post('api/login', userData).then((res) => {
 
       if(res.data.success === true){
+        console.log(res.data)
         if(res.data.user.role_id === 1){
           alert("Korisnik je admin");
           return;
         }
-        window.sessionStorage.setItem("auth_token", res.data.access_token)
+        if(res.data.user.is_blocked === 1){
+          alert("Korisnik je blokiran");
+          return;
+        }
+        const token = res.data.access_token;
+          window.sessionStorage.setItem("auth_token", token);
+         
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         addToken(res.data.access_token);
         addUser(res.data.user); 
         navigation('/');

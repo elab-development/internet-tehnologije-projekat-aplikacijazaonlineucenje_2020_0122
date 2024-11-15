@@ -4,16 +4,17 @@ import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import UserProfile from "./pages/UserProfilePage/UserProfile.jsx";
+import UserProfile from "./pages/UserPages/UserProfilePage/UserProfile.jsx";
 import axios from "axios";
 
 import Cart from "./pages/Cart/Cart.jsx";
 import Course from "./pages/CoursesPage/Course.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.jsx";
-import UserCourses from "./pages/UserCoursePage/UserCourses.jsx";
-import AdminLogin from "./pages/AdminLogin/AdminLogin.jsx";
-import Users from "./pages/Users/Users.jsx";
+import UserCourses from "./pages/UserPages/UserCoursePage/UserCourses.jsx";
+import AdminLogin from "./pages/AdminPages/AdminLogin/AdminLogin.jsx";
+import Users from "./pages/AdminPages/Users/Users.jsx";
+import UserDetails from "./pages/AdminPages/UserDetails/UserDetails.jsx";
 
 
 
@@ -125,7 +126,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar cartNum={cartNum} token = {token} loggedUser = {user} />
+       <><Navbar cartNum={cartNum} token = {token} loggedUser = {user} />
       <Routes>
       <Route path="/" element={<HomePage/>} />
         <Route path="/home" element={<HomePage/>} />
@@ -140,12 +141,13 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin addToken={addToken} addUser={addUser} />} />
         <Route path="/admin/users" element={<Users  />}/>
         
-        <Route path="admin/users/user_details" element={<Users  />}/>
+        <Route path="admin/users/user_details" element={<UserDetails  />}/>
         <Route path="/user/profile" element={<UserProfile loggedUser={user}/>} />
         <Route path="/user/courses" element={<UserCourses loggedUser={user} courses={loggedUserCourses} />} />
 
       </Routes>
-      <Footer />
+      <Footer /></>
+      
     </BrowserRouter>
   );
 }

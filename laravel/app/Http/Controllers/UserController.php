@@ -68,21 +68,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255|min:2',
-            'email' => 'required|string|max:255|email|unique:users',
-            'password' => 'required|string|min:8',
+            'email' => 'required|string|max:255|email',
+            'role_id' => 'required|integer|exists:roles,id',
+            'password' => 'nullable|string|min:8',
         ]);
 
         if($validator->fails())
             return response()->json($validator->errors());
-
+        
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        //$user->password = $request->password;
         $user->role_id = $request->role_id;
         $user->save();
-        return response()->json(['User was created successfully', new UserResource($user)]);
+        return response()->json(['user' => $user, new UserResource($user)]);
 
     }
 
@@ -94,4 +96,20 @@ class UserController extends Controller
         $user -> delete();
         return response()->json(['User was deleted successfully']);
     }
+
+    public function blockUser($id)
+{
+    $user = User::find($id);
+
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    $user->is_blocked = !$user->is_blocked; 
+    $user->save();
+
+    $status = $user->is_blocked ? 'blocked' : 'unblocked';
+    return response()->json(['message' => "User has been $status successfully"]);
+}
+
 }

@@ -5,18 +5,21 @@ import { Link } from 'react-router-dom';
 
 const Users = () => {
     const [users,setUsers] = useState(null);
-    //console.log(axios.defaults.headers);
+    
+
+    
     useEffect(() => {
         axios.get('/api/users/')
           .then((res) => {
             setUsers(res.data.users);
-            console.log(users);  // Ovde je users sada ažuriran i ispravan
+            
           })
           .catch((error) => {
-            console.error("Error fetching users:", error);
+            alert("Error fetching users:", error)
+            
           });
       }, []);
-      //console.log(users);
+      
 
   return (
     <div className="container">

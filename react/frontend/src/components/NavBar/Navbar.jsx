@@ -57,10 +57,10 @@ const Navbar = ({cartNum, token, loggedUser, loggedUserCourses}) => {
           <ul className='row'>
               <div className='col-sm-offset-1' ><Link to ="admin/users">Korisnici</Link></div>
               <div className='col-sm-offset-1'><Link to ="courses">Predavaci</Link></div>
-              {token == null ? (<div className='col-sm-offset-2'><Link to ="login">Login</Link></div>)
-              :(<div className='col-sm-offset-2'><Link to ="/" onClick={handleLogout}>Logout</Link></div>)}
+              {token == null ? (<div className='col-sm-offset-3'><Link to ="login">Login</Link></div>)
+              :(<div className='col-sm-offset-3'><Link to ="/" onClick={handleLogout}>Logout</Link></div>)}
              
-              <div className='col-sm-offset-1'><Link to = "cart"><FaCartShopping />{cartNum}</Link></div>
+              
               {token == null ? <p></p>
               :( <div className='col-sm-offset-1'><ProfileMenu loggedUser = {loggedUser} courses={loggedUserCourses} /></div>)}
           </ul>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './adminLogin.css'; // Novi CSS fajl za admin login stilove
+import './adminLogin.css'; 
 import axios from 'axios';
 
 const AdminLogin = ({ addToken, addUser }) => {
@@ -24,10 +24,13 @@ const AdminLogin = ({ addToken, addUser }) => {
     axios.post('api/login', userData).then((res) => {
       if (res.data.success === true) {
         if (res.data.user.role_id === 1) {
-          window.sessionStorage.setItem("auth_token", res.data.access_token);
+           const token = res.data.access_token;
+          window.sessionStorage.setItem("auth_token", token);
+         
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
           addToken(res.data.access_token);
           addUser(res.data.user);
-          console.log(res.data.user);
+         // console.log(res.data.user);
           alert("Dobrodošli, admin!");
         }
       }else{

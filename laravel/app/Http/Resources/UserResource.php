@@ -21,7 +21,8 @@ class UserResource extends JsonResource
             'name' => $this->resource->name,
             'email' => $this->resource->email,
             'image' => $this->resource->image,
-            'role' =>  $this->resource->role
+            'role' =>  $this->resource->role,
+            'is_blocked' => $this->resource->is_blocked
         ];
     }
 }
