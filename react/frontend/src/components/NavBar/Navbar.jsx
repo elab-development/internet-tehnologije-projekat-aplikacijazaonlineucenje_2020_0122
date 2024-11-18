@@ -56,7 +56,8 @@ const Navbar = ({cartNum, token, loggedUser, loggedUserCourses}) => {
       <nav>   
           <ul className='row'>
               <div className='col-sm-offset-1' ><Link to ="admin/users">Korisnici</Link></div>
-              <div className='col-sm-offset-1'><Link to ="courses">Predavaci</Link></div>
+              <div className='col-sm-offset-1'><Link to ="admin/teachers">Predavaci</Link></div>
+              <div className='col-sm-offset-1'><Link to ="admin/register">Registruj predavaca/admina</Link></div>
               {token == null ? (<div className='col-sm-offset-3'><Link to ="login">Login</Link></div>)
               :(<div className='col-sm-offset-3'><Link to ="/" onClick={handleLogout}>Logout</Link></div>)}
              
@@ -86,7 +87,25 @@ const Navbar = ({cartNum, token, loggedUser, loggedUserCourses}) => {
   </div>    
     )
   }
-
+  if(loggedUser != null && loggedUser.role_id === 2){
+    return (
+      <div className = 'container'>
+      <nav>   
+          <ul className='row'>
+              <div className='col-sm-offset-1' ><Link to ="teacher/courses">Kursevi</Link></div>
+              
+              <div className='col-sm-offset-1'><Link to ="teacher/add_course">Kreiraj kurs</Link></div>
+              {token == null ? (<div className='col-sm-offset-3'><Link to ="login">Login</Link></div>)
+              :(<div className='col-sm-offset-3'><Link to ="/" onClick={handleLogout}>Logout</Link></div>)}
+             
+              
+              {token == null ? <p></p>
+              :( <div className='col-sm-offset-1'><ProfileMenu loggedUser = {loggedUser} courses={loggedUserCourses} /></div>)}
+          </ul>
+      </nav>
+  </div>    
+    )
+  }
 
 }
 

@@ -1,7 +1,8 @@
 
 
 import {React} from 'react'
-import CartCourse from '../../../components/cartCourse/cartCourse.jsx';
+
+import CoursesWithDetails from '../../../components/CoursesWithDetails/CoursesWithDetails';
 
 
 const UserCourses = ({courses}) => {
@@ -13,7 +14,7 @@ const UserCourses = ({courses}) => {
     <div className='row'> 
      {courses == null ? <></> : (
      courses.map((item) => (
-        <CartCourse key={item.id} course={item.course} />
+        <CoursesWithDetails key={item.id} course={item.course} />
     ))
   )}
     </div>

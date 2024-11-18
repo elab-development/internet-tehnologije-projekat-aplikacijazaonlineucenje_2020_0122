@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('purchaseds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('course_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->string('payment_method');
             
             $table->timestamps();

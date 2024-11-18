@@ -1,8 +1,8 @@
 import React from 'react';
-import "./coursecard.css";
+import "./coursesWithDetails.css";
+import { Link } from 'react-router-dom';
 
-
-const Coursecard = ({ course, onAdd, onRemove }) => {
+const CoursesWithDetails = ({course}) => {
   return (
     <div className="card small">
       <div className='section'>
@@ -21,12 +21,12 @@ const Coursecard = ({ course, onAdd, onRemove }) => {
         
         <div className="button-group">
 
-          <button className="primary small" onClick={() => onAdd(course.id)}>Dodaj u korpu</button>
-          <button className="secondary small" onClick={() => onRemove(course.id)}>Izbaci iz korpe</button> 
+        <Link to="course_details" className="secondary-button" state={course}>Detalji</Link>
+          
         </div>
       </div>
     </div>
   );
 }
 
-export default Coursecard;
+export default CoursesWithDetails;

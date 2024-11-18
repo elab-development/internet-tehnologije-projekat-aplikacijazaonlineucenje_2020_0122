@@ -21,17 +21,17 @@ function handleInput(e){
 function handleLogin(e){
   e.preventDefault();
   axios.post('api/login', userData).then((res) => {
-
+    if(res.data.user.role_id === 1){
+      alert("Korisnik je admin");
+      return;
+    }
+    if(res.data.user.is_blocked === 1){
+      alert("Korisnik je blokiran");
+      return;
+    }
       if(res.data.success === true){
         console.log(res.data)
-        if(res.data.user.role_id === 1){
-          alert("Korisnik je admin");
-          return;
-        }
-        if(res.data.user.is_blocked === 1){
-          alert("Korisnik je blokiran");
-          return;
-        }
+       
         const token = res.data.access_token;
           window.sessionStorage.setItem("auth_token", token);
          
@@ -39,6 +39,8 @@ function handleLogin(e){
         addToken(res.data.access_token);
         addUser(res.data.user); 
         navigation('/');
+      }else{
+        alert("neuspeh");
       }
       
 

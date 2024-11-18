@@ -36,14 +36,16 @@ const Users = () => {
                 </tr>
             </thead>
             <tbody>
-                {users.map((user) => (
-                    <tr key={user.id}>
-                        <td>{user.id}</td>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td>{user.role.role_name}</td>
-                        <td><Link to='user_details' state={user}><button className='primary'>Detalji</button></Link></td>
-                    </tr>
+            {users
+    .filter((user) => user.role.id === 3) // Filtrira korisnike sa role_id 3
+    .map((user) => (
+        <tr key={user.id}>
+            <td>{user.id}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.role.role_name}</td>
+            <td><Link to='user_details' state={user}><button className='primary'>Detalji</button></Link></td>
+        </tr>
                 ))}
             </tbody>
         </table>
