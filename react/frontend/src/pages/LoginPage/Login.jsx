@@ -15,7 +15,8 @@ function handleInput(e){
   
   let newUserData = userData;
   newUserData[e.target.name] = e.target.value;
-  setUserData(newUserData); 
+  setUserData(newUserData);
+
 }
 
 function handleLogin(e){
@@ -36,8 +37,11 @@ function handleLogin(e){
           window.sessionStorage.setItem("auth_token", token);
          
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+          
+
         addToken(res.data.access_token);
-        addUser(res.data.user); 
+        addUser(res.data.user);
         navigation('/');
       }else{
         alert("neuspeh");

@@ -1,9 +1,21 @@
 import React from 'react'
 
 const UserProfile = ({loggedUser}) => {
+  console.log('localhost:8000/storage/' + loggedUser.image);
+  const img = 'http://localhost:8000/storage/' + loggedUser.image;
+  console.log(img);
   return (
     <div className="container">
       <h1 className="text-center">Profil korisnika</h1>
+      <div className="text-center">
+        <img 
+          src={img} 
+          alt="User Avatar" 
+          className="rounded-circle"
+          style={{ width: '150px', height: '150px', objectFit: 'cover' }} 
+        />
+      </div>
+
       <div className="box">
         <div className="row">
           <div className="col-4">
