@@ -1,0 +1,11 @@
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh; /* zauzima visinu ekrana */
+    padding-bottom: 150px; /* osigurava dodatni prostor ispod */
+}
+
+.buttons{
+    overflow-y: scroll;
+}

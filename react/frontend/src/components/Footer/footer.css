@@ -1,0 +1,10 @@
+.container footer{
+    margin: 0;
+    padding: 10px;
+    background-color: #f1f1f1;
+    text-align: center;
+    z-index: 4;
+    height: min-content;
+    flex: 1; /* Popuni prostor iznad footera */
+    text-align: center;
+}

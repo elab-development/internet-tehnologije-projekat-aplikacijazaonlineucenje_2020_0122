@@ -1,0 +1,120 @@
+[33mcommit 915e7f6868f4ca268f7547dc2bdc7133e2274b5c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Ogi-2 <Ognjengj74@gmail.com>
+Date:   Sat Mar 9 21:52:03 2024 +0100
+
+    Dodati header footer login forma
+
+[33mcommit 97bc3ddb3802667c9d55ffbda61b36b2c638ed13[m[33m ([m[1;32mmaster[m[33m)[m
+Author: jocaa01 <jovanvukovic2001@gmail.com>
+Date:   Thu Mar 7 17:31:54 2024 +0100
+
+    initial commit
+
+[33mcommit 1133e8f73b8897e404a8dcfcd29eb1657211c703[m
+Merge: fd61fd2 1d2428d
+Author: Ogi-2 <ognjengj74@gmail.com>
+Date:   Sun Mar 3 18:07:46 2024 +0100
+
+    Merge branch 'main' of https://github.com/elab-development/internet-tehnologije-projekat-aplikacijazaonlineucenje_2020_0122
+
+[33mcommit fd61fd201e88d7aa8a0db14f5eca7fe7032a5973[m
+Author: Ogi-2 <ognjengj74@gmail.com>
+Date:   Sun Mar 3 18:06:40 2024 +0100
+
+    proba commit
+
+[33mcommit 1d2428d8b138c744728fbe02da13c49f28a6d52b[m
+Author: = <jovanvukovic2001@gmail.com>
+Date:   Thu Feb 1 19:19:36 2024 +0100
+
+    dodata drop migracija
+
+[33mcommit e1db30f411d0d4b760c6e690d74cd0304f98cca5[m
+Author: = <jovanvukovic2001@gmail.com>
+Date:   Thu Feb 1 16:19:36 2024 +0100
+
+    prepravke web.php
+
+[33mcommit 48d859c2fb8a2211c66bf324cb4938cf3d244bd3[m
+Author: = <jovanvukovic2001@gmail.com>
+Date:   Thu Feb 1 15:14:09 2024 +0100
+
+    paginacija za usera
+
+[33mcommit 7e316136037c052de096bb49d2dd667eba5880c3[m
+Author: Ogi-2 <ognjengj74@gmail.com>
+Date:   Wed Jan 31 21:47:49 2024 +0100
+
+    dodavanje CRUD operacija nad modelima
+
+[33mcommit c3c65e9a1c63a6c14f2740a6db07e5ab63241ba9[m
+Author: = <jovanvukovic2001@gmail.com>
+Date:   Wed Jan 31 18:03:55 2024 +0100
+
+    dodate login,logout, i register logike
+
+[33mcommit 4def5178098f46942a441937a4f821906e23f5f6[m
+Author: = <jovanvukovic2001@gmail.com>
+Date:   Tue Jan 30 20:08:18 2024 +0100
+
+    izbacivanje migracije drop_column_in_roles i poboljsavanje generisanja spoljnih kljuceva
+
+[33mcommit e715ef8bb589cbc485189f37cc82dee7f97773f7[m
+Author: Ogi-2 <ognjengj74@gmail.com>
+Date:   Tue Jan 30 18:58:10 2024 +0100
+
+    dodati kontroleri,resources, i rute
+
+[33mcommit abbaa3fe49a0e2875f2da5fe5f15afbc85cb6f80[m
+Author: Jovan Vukovic <jovanvukovic2001@gmail.com>
+Date:   Mon Jan 29 23:23:56 2024 +0100
+
+    dodata drop migracija
+
+[33mcommit d0db38961ff3c2d7183829db6cd5fe59d7ed4fb2[m
+Author: Jovan Vukovic <jovanvukovic2001@gmail.com>
+Date:   Mon Jan 29 23:04:59 2024 +0100
+
+    ispravke oko stranih kljuceva
+
+[33mcommit afc8c4185b5b04d4a23f09273512a8da5f7fd3a6[m
+Author: Jovan Vukovic <jovanvukovic2001@gmail.com>
+Date:   Mon Jan 29 00:39:20 2024 +0100
+
+    dodat Role model
+
+[33mcommit c8e8e6d76d9668004b2cf9c7a9e8168b0401ddcc[m
+Author: Jovan Vukovic <jovanvukovic2001@gmail.com>
+Date:   Sun Jan 28 16:21:47 2024 +0100
+
+    dodati modeli, migracije, seedovi, fabrike
+
+[33mcommit 858e392f491c7e6adcee1db4c8439fb222ab59ef[m
+Author: Ogi-2 <ognjengj74@gmail.com>
+Date:   Sat Jan 27 23:05:06 2024 +0100
+
+    proba
+
+[33mcommit 15cebd827d238ffa0200291b49d82ae89a288741[m
+Author: Jovan Vukovic <jovanvukovic2001@gmail.com>
+Date:   Sat Jan 27 16:41:08 2024 +0100
+
+    instalacija laravela
+
+[33mcommit 588a88aa504e87c6895ca9e3c44fb6ac059ca881[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Sat Jan 27 12:45:54 2024 +0000
+
+    add deadline
+
+[33mcommit 610f17124b570407da701882a0961d6a88f9d13e[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Sat Jan 27 12:45:52 2024 +0000
+
+    Setting up GitHub Classroom Feedback
+
+[33mcommit b892109bc46d0ae8900030621828aed43d179611[m[33m ([m[1;31morigin/feedback[m[33m)[m
+Author: github-classroom[bot] <66690702+github-classroom[bot]@users.noreply.github.com>
+Date:   Sat Jan 27 12:45:52 2024 +0000
+
+    GitHub Classroom Feedback

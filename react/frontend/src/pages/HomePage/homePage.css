@@ -1,0 +1,44 @@
+/* homepage.css */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background-image: url('C:\Users\Win 10\Desktop\iteh\React\react\frontend\src\assets\HomePage.jpg');  
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .hero-content {
+    background-color: rgba(0, 0, 0, 0.6); /* Lagani tamni overlay za bolju čitljivost teksta */
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero .button {
+    margin: 0.5rem;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #0078d4; /* Promeni po potrebi */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .hero .button:hover {
+    background-color: #005fa3;
+  }
+  
