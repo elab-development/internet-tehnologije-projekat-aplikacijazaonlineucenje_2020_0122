@@ -1,16 +1,17 @@
 import React from 'react'
+import Avatar from "../../../assets/profileAvatar.jpg"
 
 const UserProfile = ({loggedUser}) => {
-  console.log('localhost:8000/storage/' + loggedUser.image);
+  //console.log('localhost:8000/storage/' + loggedUser.image);
   const img = 'http://localhost:8000/storage/' + loggedUser.image;
-  console.log(img);
+  //console.log(img);
   return (
     <div className="container">
       <h1 className="text-center">Profil korisnika</h1>
       <div className="text-center">
         <img 
-          src={img} 
-          alt="User Avatar" 
+          src={loggedUser.image !=null ? img:Avatar} 
+          alt="User Avatar"
           className="rounded-circle"
           style={{ width: '150px', height: '150px', objectFit: 'cover' }} 
         />

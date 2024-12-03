@@ -9,20 +9,30 @@ const RegisterPage = () => {
     email: "",
     password: "",
     name: "",
-    role_id: ""
+    role_id: 0,
+    img: ""
   }); 
   
   function handleInput(e){
   
-    let newUserData = userData;
-    newUserData[e.target.name] = e.target.value;
+    let newUserData = { ...userData };
+    if (e.target.type === "file") {
+      newUserData[e.target.name] = e.target.files[0]; 
+    } else {
+      newUserData[e.target.name] = e.target.value;
+    }
+
     setUserData(newUserData);
-    console.log(newUserData); 
+    console.log(newUserData);
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-  axios.post('api/register', userData).then((res) => {
+  axios.post('api/register', userData,{
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  }).then((res) => {
       console.log(res.data);
       alert("novi " + (userData.role_id === "2" ? 'predavac' : 'administrator') + " registrovan");
   }).catch(e =>{
@@ -33,10 +43,18 @@ const RegisterPage = () => {
   return (
     
   <div className='page-container'>
-   
+      
+
+
     <div className='container content-wrap'>
+        
       <h2 className='col-sm-offset-2'>Register</h2>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister} encType='multipart/form-data'>
+      {/* Profilna Slika */}
+      <div className="col-sm-1 col-md-6">
+            <label htmlFor="img" className="form-label">Image</label>
+            <input type="file" name="img" className="input-file" placeholder="image" onInput={handleInput} />
+          </div>
         <div className='col-sm-offset-2' >
           <label htmlFor="name">Name:</label>
           <input type="text" id="name" name="name" onInput={handleInput} required  />

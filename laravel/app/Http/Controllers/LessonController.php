@@ -50,7 +50,7 @@ class LessonController extends Controller
             'content' =>$request->content
         ]);  
     
-        return response()->json(['Lesson is created successfully', new LessonResource($lesson)]);
+        return response()->json(['Lesson is created successfully', 'lesson'=>new LessonResource($lesson)]);
     }
 
     /**

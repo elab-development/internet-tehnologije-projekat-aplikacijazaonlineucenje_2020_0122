@@ -10,6 +10,8 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\UserPurchesedController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CourseLessonController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\LessonMaterialController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,6 +43,7 @@ Route::resource('users.purchaseds',UserPurchesedController::class)->only(['index
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
+Route::get('/lesson/{lesson_id}/materials', [LessonMaterialController::class, 'index']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
@@ -59,7 +62,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
        Route::resource('courses', CourseController::class)->only(['update','store','destroy']);
         Route::resource('lessons',LessonController::class);
     });
-
+    Route::resource('materials', MaterialController::class);
     Route::resource('course.lesson', CourseLessonController::class);
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);

@@ -22,11 +22,15 @@ function handleInput(e){
 function handleLogin(e){
   e.preventDefault();
   axios.post('api/login', userData).then((res) => {
-    if(res.data.user.role_id === 1){
-      alert("Korisnik je admin");
+    console.log(res.data.user);
+    if(res.data.user!= null && res.data.user.role_id === 1){
+      alert("Korisnik je admin, prijavite se preko admin logina");
+      const token = null;
+      window.sessionStorage.setItem("auth_token", token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       return;
     }
-    if(res.data.user.is_blocked === 1){
+    if(res.data.user!= null && res.data.user.is_blocked === 1){
       alert("Korisnik je blokiran");
       return;
     }

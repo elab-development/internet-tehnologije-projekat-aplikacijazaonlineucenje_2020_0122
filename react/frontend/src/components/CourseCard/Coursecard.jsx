@@ -9,7 +9,7 @@ const Coursecard = ({ course, onAdd, onRemove }) => {
         <h2>{course.title}</h2>
       </div>
       <div className='section'>
-        <img src={course.picture} className="section media" alt='picture' />
+        <img src="https:/picsum.photos/200" className="section media" alt='picture' />
       </div>
       <div className='section'>
         <p>{course.description}</p>   

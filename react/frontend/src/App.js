@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserProfile from "./pages/UserPages/UserProfilePage/UserProfile.jsx";
 import axios from "axios";
-
 import Cart from "./pages/Cart/Cart.jsx";
 import Course from "./pages/CoursesPage/Course.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
@@ -22,6 +21,7 @@ import AddCoursePage from "./pages/TeacherPages/AddCoursePage.jsx";
 import TeacherCoursesPage from "./pages/TeacherPages/TeacherCourses/TeacherCoursesPage.jsx";
 import TeacherCourseDetailsPage from "./pages/TeacherPages/TeacherCourseDetailsPage/TeacherCourseDetailsPage.jsx";
 import AddLessonPage from "./pages/TeacherPages/AddLessonPage/AddLessonPage.jsx";
+import LessonMaterialsPage from "./pages/TeacherPages/LessonMaterialsPage/LessonMaterialsPage.jsx";
 
 
 function App() {
@@ -149,6 +149,7 @@ function App() {
         <Route path="teacher/courses" element={<TeacherCoursesPage courses={courses} />}/>
         <Route path="teacher/courses/course_details" element={<TeacherCourseDetailsPage loggedUser ={user}/>}/>
         <Route path="/add_lesson" element={<AddLessonPage/>}/>
+        <Route path="/lesson/materials" element={<LessonMaterialsPage/>}/>
         <Route path="user/courses/course_details" element={<TeacherCourseDetailsPage  />}/>
         <Route path="/login" element={<Login addToken={addToken} addUser = {addUser} />} />
         <Route path="/register" element={<Register />} />

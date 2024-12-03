@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 //import "../../index.css";
 import "../ProfileMenu/profilemenu.css";
-import profileAvatar from '../../assets/profileAvatar.jpg';
+import profileAvatar from "../../assets/profileAvatar.jpg";
 import "../../index.css"
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function ProfileMenu({loggedUser}) {
     const [menuActive, setMenuActive] = useState(false);
-  
+    const img = 'http://localhost:8000/storage/' + loggedUser.image;
     const menuToggle = () => {
       setMenuActive(!menuActive);
     };
@@ -20,7 +20,7 @@ function ProfileMenu({loggedUser}) {
       <div className="action">
         <div className="profile" onClick={menuToggle}>
             <p>{loggedUser.name}</p>
-          <img src={profileAvatar} alt="Profile Avatar" />
+          <img src={loggedUser.image !=null ? img:profileAvatar} alt="User Avatar" />
          
          
         </div>
