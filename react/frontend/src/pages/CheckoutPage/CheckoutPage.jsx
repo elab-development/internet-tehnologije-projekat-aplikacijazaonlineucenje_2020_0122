@@ -4,8 +4,8 @@
     import axios from "axios";
 
     const CheckoutPage = ({cartCourses, loggedUser, userCourses,updateUserCourses}) => {
-         console.log('User courses:', userCourses);
-        console.log('cart courses:', cartCourses);
+        // console.log('User courses:', userCourses);
+        // console.log('cart courses:', cartCourses);
         const location = useLocation();
     const { total } = location.state || {};
     const clientId = "AXGedky7tPB3jDTjJtikmCviDA2wzXWC1lAjwOELO-oKBgsFD5hChc7tdFUnSGAuhFFtP6xVzcDtTSnL";
@@ -55,6 +55,8 @@
             onApprove={(data, actions) => {
                 return actions.order.capture().then((details) => {
                 alert(`Transaction completed by ${details.payer.name.given_name}`);
+                //const paymentMethod = details.purchase_units[0].payments.captures[0].payment_method;
+                //console.log(details);
                 handlePurchase();
                 });
             }}

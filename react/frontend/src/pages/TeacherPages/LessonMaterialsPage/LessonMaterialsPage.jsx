@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import VideoLessonMaterial from "../../../components/VideoLessonMaterialContainer/VideoLessonMaterial.jsx";
 
-const LessonMaterialsPage = () => {
+const LessonMaterialsPage = ({loggedUser}) => {
   const [materials, setMaterials] = useState(null);
   const location = useLocation();
   const lesson = location.state;
@@ -36,6 +36,10 @@ async function handleFileChange(e) {
     
   }
 
+  function handleDownload(e){
+    
+  }
+
   useEffect(() => {
     if (!materials) {
       axios
@@ -61,20 +65,22 @@ async function handleFileChange(e) {
         </div>
       </header>
 
-      <div className="row">
-        <div className="col-sm">
-          <label htmlFor="materials" className="label-inline">
-            <strong>Add Materials:</strong>
-          </label>
-          <input
-            type="file"
-            id="materials"
-            multiple
-            className="input-block"
-            onChange={handleFileChange}
-          />
-        </div>
-      </div>
+      {loggedUser?.role_id === 2 && (
+  <div className="row">
+    <div className="col-sm">
+      <label htmlFor="materials" className="label-inline">
+        <strong>Add Materials:</strong>
+      </label>
+      <input
+        type="file"
+        id="materials"
+        multiple
+        className="input-block"
+        onChange={handleFileChange}
+      />
+    </div>
+  </div>
+)}
 
       <div className="row margin-top">
       {materials ? (
@@ -94,7 +100,8 @@ async function handleFileChange(e) {
                 <div className="card" key={material.id}>
                   <p>{material.file_name}</p>
                   <a
-                    href={`http://127.0.0.1:8000/storage/${material.file_path}`}
+                    onClick={handleDownload}
+                    
                     download={material.file_name}
                     className="button"
                   >

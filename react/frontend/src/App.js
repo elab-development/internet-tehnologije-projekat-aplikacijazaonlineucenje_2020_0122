@@ -149,7 +149,7 @@ function App() {
         <Route path="teacher/courses" element={<TeacherCoursesPage courses={courses} />}/>
         <Route path="teacher/courses/course_details" element={<TeacherCourseDetailsPage loggedUser ={user}/>}/>
         <Route path="/add_lesson" element={<AddLessonPage/>}/>
-        <Route path="/lesson/materials" element={<LessonMaterialsPage/>}/>
+        <Route path="/lesson/materials" element={<LessonMaterialsPage loggedUser = {user}/>}/>
         <Route path="user/courses/course_details" element={<TeacherCourseDetailsPage  />}/>
         <Route path="/login" element={<Login addToken={addToken} addUser = {addUser} />} />
         <Route path="/register" element={<Register />} />

@@ -63,14 +63,14 @@ function handleLogin(e){
 
   return (
     <div className='login_container page-container content-wrap'>
-      <h2 className='col-sm-offset-5'>Login</h2>
+      <h2 className='col-sm-offset-6'>Login</h2>
       <form className='row' onSubmit={handleLogin}>
-        <div className='row col-sm-offset-5'>
+        <div className='row col-sm-offset-3'>
           
           <label className='col-sm-offset-4' htmlFor="email"  >Email:</label> 
           <input type="text" id="email" name="email" onInput={handleInput} />
         </div>
-        <div className='col-sm-offset-5' >
+        <div className='col-sm-offset-3' >
           <label className='col-sm-offset-3' htmlFor="password">Password:</label>
           <input  type="password" id="password" name="password"  onInput={handleInput} />
         </div>

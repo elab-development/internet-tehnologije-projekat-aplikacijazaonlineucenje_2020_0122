@@ -44,41 +44,42 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <h2>Register</h2>
-        <form onSubmit={handleRegister} className="row" encType='multipart/form-data'>
-          {/* Profilna Slika */}
-          <div className="col-sm-12 col-md-6">
-            <label htmlFor="img" className="form-label">Image</label>
-            <input type="file" name="img" className="input-file" placeholder="image" onInput={handleInput} />
-          </div>
+    <form onSubmit={handleRegister} encType="multipart/form-data">
+      <fieldset>
+        <div className="form-group">
+          <h2>Register</h2>
+        </div>
+        
+        {/* Profilna Slika */}
+        <div className="form-group">
+          <label htmlFor="img" className="form-label">Image</label>
+          <input type="file" name="img" className="input-file" placeholder="image" onInput={handleInput} />
+        </div>
 
-          {/* Name */}
-          <div className="col-sm-12 col-md-6">
-            <label htmlFor="name" className="form-label">Name:</label>
-            <input type="text" id="name" name="name" className="input-text" onInput={handleInput} required />
-          </div>
+        {/* Name */}
+        <div className="form-group">
+          <label htmlFor="name" className="form-label">Name:</label>
+          <input type="text" id="name" name="name" className="input-text" onInput={handleInput} required />
+        </div>
 
-          {/* Password */}
-          <div className="col-sm-12 col-md-6">
-            <label htmlFor="password" className="form-label">Password:</label>
-            <input type="password" id="password" name="password" className="input-text" onInput={handleInput} required />
-          </div>
+        {/* Password */}
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">Password:</label>
+          <input type="password" id="password" name="password" className="input-text" onInput={handleInput} required />
+        </div>
 
-          {/* Email */}
-          <div className="col-sm-12 col-md-6">
-            <label htmlFor="email" className="form-label">Email:</label>
-            <input type="email" id="email" name="email" className="input-text" onInput={handleInput} required />
-          </div>
+        {/* Email */}
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">Email:</label>
+          <input type="email" id="email" name="email" className="input-text" onInput={handleInput} required />
+        </div>
 
-          {/* Submit Button */}
-          <div className="col-sm-12">
-            <button className="button primary" type="submit">Register</button>
-          </div>
-        </form>
-      </div>
-    </div>
+        {/* Submit Button */}
+        <div className="form-group">
+          <button className="button primary" type="submit">Register</button>
+        </div>
+      </fieldset>
+    </form>
   );
 };
 

@@ -1,12 +1,30 @@
-.register__container {
-    width: 400px; 
-    background-color: #f0f0f0; 
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    padding: 5px; /* dodaje unutrašnji razmak */
-    box-sizing: border-box; /* osigurava da padding ne poveća širinu */
-    max-height: 68vh; 
-    overflow-y: auto; /* omogućava skrolovanje ako je sadržaj viši od 80vh */
+/* Register form custom styling */
+form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  
+  /* Mini.css base styling, you can customize this as needed */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-text, .input-file {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .input-text:focus, .input-file:focus {
+    border-color: #4CAF50;
+  }
+  
+  
+  

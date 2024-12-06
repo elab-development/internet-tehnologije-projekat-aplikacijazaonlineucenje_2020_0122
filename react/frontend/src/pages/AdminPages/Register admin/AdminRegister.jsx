@@ -48,10 +48,10 @@ const RegisterPage = () => {
 
     <div className='container content-wrap'>
         
-      <h2 className='col-sm-offset-2'>Register</h2>
+      <h2 className='col-sm-offset-4'>Register</h2>
       <form onSubmit={handleRegister} encType='multipart/form-data'>
       {/* Profilna Slika */}
-      <div className="col-sm-1 col-md-6">
+      <div className="col-sm-6 col-md-6">
             <label htmlFor="img" className="form-label">Image</label>
             <input type="file" name="img" className="input-file" placeholder="image" onInput={handleInput} />
           </div>

@@ -21,7 +21,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-
+        \App\Http\Middleware\StaticFilesCors::class,
+        
     ];
 
     /**
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'isAdmin' => \App\Http\Middleware\IsAdmin::class, 
         'checkBlocked' => \App\Http\Middleware\CheckIfUserIsBlocked::class,
         'isTeacher' => \App\Http\Middleware\isTeacher::class, 
+
     ];
 }

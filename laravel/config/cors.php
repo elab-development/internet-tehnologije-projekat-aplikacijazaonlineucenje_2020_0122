@@ -15,20 +15,13 @@ return [
     |
     */
 
-    'paths' => ['*'],
-
-    'allowed_methods' => ['*'],
-
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
-
+    'paths' => ['*','api/*', 'storage/*'], // Dodaj 'storage/*' da omogućiš pristup fajlovima
+    'allowed_methods' => ['*'], // Dozvoljeni HTTP metodi
+    'allowed_origins' => ['http://localhost:3000'], // Dozvoljena domena sa koje dolaze zahtevi
     'allowed_origins_patterns' => [],
-
-    'allowed_headers' => ['*'],
-
+    'allowed_headers' => ['*'], // Dozvoljeni HTTP zaglavlja
     'exposed_headers' => [],
-
     'max_age' => 0,
-
     'supports_credentials' => true,
 
 ];

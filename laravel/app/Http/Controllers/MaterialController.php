@@ -46,13 +46,23 @@ class MaterialController extends Controller
 
     public function download($fileName)
 {
-    $filePath = 'materials/' . $fileName; 
+    $filePath = 'public/materials/' . $fileName;
 
-    if (Storage::exists($filePath)) {
-        return Storage::download($filePath);
-    }
+        if (!Storage::exists($filePath)) {
+            return response()->json([
+                'error' => 'File not found',
+            'filePath' => $filePath,
+            'availableFiles' => Storage::files('public/materials/')
+            ], 404);
+        }
 
-    return response()->json(['error' => 'File not found'], 404);
+        $response = response()->download($filePath);
+
+        $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type');
+
+        return $response;
 }
 
     

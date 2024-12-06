@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('course.lesson', CourseLessonController::class);
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/download/{fileName}', [MaterialController::class, 'download'])->name('download');
 });
 
 Route::resource('courses', CourseController::class)->only('index');
